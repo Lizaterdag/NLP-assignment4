@@ -114,14 +114,9 @@ class ParserModel(nn.Module):
         ###     Gather: https://pytorch.org/docs/stable/torch.html#torch.gather
         ###     View: https://pytorch.org/docs/stable/tensors.html#torch.Tensor.view
         ###     Flatten: https://pytorch.org/docs/stable/generated/torch.flatten.html
+        
+        x = self.embeddings[w].view(-1, self.embed_size * self.n_features)
 
-        for i in range(w.shape[0]):
-            for j in range(w.shape[1]):
-                if j == 0:
-                    x = self.embeddings[w[i][j]]
-                else:
-                    x = torch.cat((x, self.embeddings[w[i][j]]), 0)
-      
 
         ### END YOUR CODE
         return x
